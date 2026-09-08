@@ -1,21 +1,19 @@
-# 🗣️ TalkMaster
+# 🗣️ TalkMaster Premium
 
 **Learn to talk like anyone you want to be.**
 
-TalkMaster is a web app that helps you learn different communication styles — from leadership and confidence to flirty, romantic, and lovable. Pick a style, study the principles, see before-and-after examples, and practice with real exercises.
+A premium Flask web app with a 30-day structured curriculum, audio features, progress tracking, gamification, and a beautiful glassmorphism UI with dark/light themes.
 
 ## ✨ Features
 
-- **7 Communication Styles**: The Leader, The Charmer, The Flirt, The Romantic, The Sweetheart, The Storyteller, The Diplomat
-- **Before & After Examples**: See weak vs. powerful ways of saying the same thing
-- **Do's & Don'ts**: Quick-reference checklists for each style
-- **Practice Exercises**: Actionable exercises you can try in real life
-- **Interactive Quizzes**: Test your understanding with generated quiz questions
-- **Pro Tips**: Battle-tested advice for each communication mode
-- **Beautiful Dark UI**: Modern, responsive design with smooth animations
+### 30-Day Structured Curriculum
+- **Week 1: Foundations** — Leader & Charmer styles
+- **Week 2: Emotional Connection** — Flirt & Romantic styles
+- **Week 3: Advanced Expression** — Sweetheart & Storyteller styles
+- **Week 4: Mastery & Integration** — Diplomat, style switching, real-world scenarios
+- Each day includes a lesson, key takeaway, exercise, quiz, and reflection prompt
 
-## 🎨 Communication Styles
-
+### 7 Communication Styles
 | Style | What You'll Learn |
 |-------|------------------|
 | 👑 The Leader | Command authority, inspire others, speak with conviction |
@@ -26,75 +24,96 @@ TalkMaster is a web app that helps you learn different communication styles — 
 | 🎭 The Storyteller | Hooks, pacing, making any conversation captivating |
 | 🤝 The Diplomat | Persuasion, negotiation, collaborative communication |
 
+### Audio Features (Web Speech API)
+- **Text-to-speech** for all lessons, examples, exercises, and tips
+- **Voice selection** — choose from available system voices
+- **Speed control** — adjust playback from 0.5x to 1.5x
+- **Play/pause toggle** on every audio button
+- No external dependencies — uses browser's built-in speech synthesis
+
+### Progress Tracking & Gamification
+- **XP system** — earn XP for completing lessons and answering quizzes
+- **Levels** — level up every 250 XP
+- **Streaks** — track consecutive days of learning
+- **13 achievement badges** — unlock by completing milestones
+- **Progress ring** — visual circular progress indicator
+- **localStorage persistence** — all progress saved in the browser
+- **Confetti celebrations** — when you complete lessons or unlock badges
+
+### Premium UI
+- **Glassmorphism design** with backdrop blur effects
+- **Dark/light theme toggle** with smooth transitions
+- **Animated gradient background** that shifts subtly
+- **Page enter animations** with fade-up effects
+- **Scroll-triggered animations** for cards and elements
+- **Smooth hover effects** with depth and glow
+- **Toast notifications** for feedback
+- **Fully responsive** — works on desktop, tablet, and mobile
+
 ## 🚀 Quick Start
 
 ```bash
-# Clone the repository
 git clone https://github.com/m4hruthik/talk-master.git
 cd talk-master
-
-# Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Run the app
 python app.py
 ```
 
-The app will be available at `http://localhost:5000`.
+Open `http://localhost:5000` in your browser.
 
 ## 🛠️ Tech Stack
 
 - **Backend**: Python + Flask
-- **Frontend**: HTML, CSS, JavaScript (vanilla)
+- **Frontend**: HTML, CSS, JavaScript (vanilla, no frameworks)
+- **Audio**: Web Speech API (SpeechSynthesis)
+- **Storage**: localStorage (client-side progress tracking)
 - **Fonts**: Google Fonts (Inter)
 
 ## 📁 Project Structure
 
 ```
 talk-master/
-├── app.py                 # Flask app with routes & communication data
-├── requirements.txt       # Python dependencies
-├── README.md             # You are here
+├── app.py                    # Flask app with curriculum, styles, and API routes
+├── requirements.txt          # Python dependencies
+├── README.md
 ├── static/
 │   ├── css/
-│   │   └── style.css      # All styling
+│   │   └── style.css         # Premium glassmorphism styles
 │   └── js/
-│       └── app.js         # Frontend interactions
+│       └── app.js            # Audio, progress tracking, UI interactions
 └── templates/
-    ├── base.html          # Base template
-    ├── index.html          # Home page — style selection
-    ├── learn.html          # Learning page for each style
-    └── not_found.html      # 404 page
+    ├── base.html             # Base template with nav, theme toggle
+    ├── index.html             # Dashboard with progress, styles, badges
+    ├── curriculum.html         # 30-day path overview
+    ├── day.html               # Daily lesson page with audio & quiz
+    ├── learn.html             # Style reference with audio examples
+    └── not_found.html         # 404 page
 ```
 
 ## 📖 API Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/` | GET | Home page with style selection |
-| `/learn/<style_id>` | GET | Learning page for a specific style |
+| `/` | GET | Dashboard with progress, styles, and badges |
+| `/learn/<style_id>` | GET | Style reference page with audio |
+| `/curriculum` | GET | 30-day curriculum overview |
+| `/day/<day_num>` | GET | Individual daily lesson (1-30) |
 | `/api/quiz/<style_id>` | GET | Generate a random quiz question |
 | `/api/practice/<style_id>` | GET | Get a random practice exercise |
+| `/api/curriculum` | GET | Full curriculum data as JSON |
 | `/health` | GET | Health check |
 
-## 🤝 Contributing
+## 🎮 Gamification Details
 
-Contributions are welcome! If you'd like to add a new communication style or improve existing ones:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/new-style`)
-3. Add your style to the `STYLES` dictionary in `app.py`
-4. Commit your changes (`git commit -m 'Add new communication style'`)
-5. Push to the branch (`git push origin feature/new-style`)
-6. Open a Pull Request
+- **XP per lesson**: 50-300 XP depending on lesson type
+- **Quiz bonus**: +25 XP per correct answer
+- **Levels**: Every 250 XP = 1 level
+- **13 badges**: First Step, Week Warriors, Streak badges, XP milestones, Quiz Master, Renaissance Communicator, and TalkMaster Graduate
+- **Streak tracking**: Consecutive days of completing lessons
 
 ## 📝 License
 
-This project is open source and available under the MIT License.
+MIT License — open source and free to use.
 
 ---
 

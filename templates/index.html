@@ -1,27 +1,75 @@
 {% extends "base.html" %}
-{% block title %}TalkMaster{% endblock %}
+{% block title %}TalkMaster Premium{% endblock %}
 
 {% block content %}
+<!-- Hero -->
 <section class="hero">
     <div class="hero-content">
         <h1>Learn to talk like <span class="gradient-text">anyone you want to be</span></h1>
         <p class="hero-sub">
-            Pick a communication style — from leadership to flirty, romantic to charismatic.
-            Get tips, real examples, practice exercises, and pro tips for each one.
+            A 30-day journey through 7 communication styles — from leadership to charm, from romance to diplomacy.
+            With audio examples, daily lessons, quizzes, and progress tracking.
         </p>
         <div class="hero-stats">
-            <div class="stat"><strong>{{ styles|length }}</strong> styles</div>
+            <div class="stat"><strong>7</strong> styles</div>
+            <div class="stat"><strong>30</strong> days</div>
             <div class="stat"><strong>35+</strong> examples</div>
-            <div class="stat"><strong>28+</strong> exercises</div>
+            <div class="stat"><strong>13</strong> badges</div>
         </div>
     </div>
 </section>
 
-<section class="styles-grid" id="styles">
+<!-- Progress Dashboard -->
+<section class="dashboard" id="dashboard-stats">
+    <div class="progress-cards">
+        <div class="progress-card">
+            <div class="progress-ring">
+                <svg width="80" height="80">
+                    <circle class="bg-ring" cx="40" cy="40" r="36"/>
+                    <circle class="fg-ring" id="progress-ring-fg" cx="40" cy="40" r="36"/>
+                </svg>
+                <span class="percent" id="progress-ring-text">0%</span>
+            </div>
+            <div class="label">Course Progress</div>
+        </div>
+        <div class="progress-card">
+            <div class="icon">📅</div>
+            <div class="value" id="stat-days">0/30</div>
+            <div class="label">Days Completed</div>
+        </div>
+        <div class="progress-card">
+            <div class="icon">⭐</div>
+            <div class="value" id="stat-xp">0</div>
+            <div class="label">Total XP</div>
+        </div>
+        <div class="progress-card">
+            <div class="icon">🔥</div>
+            <div class="value" id="stat-streak">0</div>
+            <div class="label">Day Streak</div>
+        </div>
+        <div class="progress-card">
+            <div class="icon">🧠</div>
+            <div class="value" id="stat-quiz">0</div>
+            <div class="label">Quiz Correct</div>
+        </div>
+    </div>
+
+    <!-- XP Bar -->
+    <div class="xp-bar-container">
+        <div class="xp-bar-bg">
+            <div class="xp-bar-fill" id="xp-bar-fill" style="width:0%;"></div>
+        </div>
+        <div class="xp-label" id="xp-label">Level 1 · 0/250 XP</div>
+    </div>
+</section>
+
+<!-- Style Cards -->
+<section class="styles-section">
     <h2 class="section-title">Choose Your Style</h2>
+    <p class="section-subtitle">Explore each communication style or follow the 30-day structured curriculum.</p>
     <div class="cards-grid">
         {% for id, style in styles.items() %}
-        <a href="/learn/{{ id }}" class="style-card" style="--card-color: {{ style.color }}; --card-color-light: {{ style.color_light }};">
+        <a href="/learn/{{ id }}" class="style-card" style="--card-color: {{ style.color }}; --card-color-light: {{ style.color_light }}; --card-glow: {{ style.color }}33;">
             <div class="card-icon" style="background: {{ style.color_light }};">{{ style.icon }}</div>
             <h3>{{ style.name }}</h3>
             <p>{{ style.tagline }}</p>
@@ -30,30 +78,52 @@
                 <span>{{ style.examples|length }} examples</span>
                 <span>{{ style.exercises|length }} exercises</span>
             </div>
-            <span class="card-cta">Start learning →</span>
+            <span class="card-cta">Start learning <span>→</span></span>
         </a>
         {% endfor %}
     </div>
 </section>
 
+<!-- 30-Day Path CTA -->
 <section class="how-it-works">
-    <h2 class="section-title">How It Works</h2>
+    <h2 class="section-title" style="text-align:center;">Start Your 30-Day Journey</h2>
+    <p class="section-subtitle" style="text-align:center;">Structured daily lessons with quizzes, exercises, and audio examples.</p>
+    <div style="text-align:center;margin-bottom:2rem;">
+        <a href="/curriculum" class="btn-primary" style="font-size:1.05rem;padding:1rem 2rem;">
+            View 30-Day Curriculum →
+        </a>
+    </div>
     <div class="steps">
         <div class="step">
             <div class="step-num">1</div>
-            <h3>Pick a Style</h3>
-            <p>Choose from 7 communication modes — leadership, charm, flirting, romance, and more.</p>
+            <h3>Daily Lessons</h3>
+            <p>Each day brings a new lesson — principles, examples, and exercises you can practice immediately.</p>
         </div>
         <div class="step">
             <div class="step-num">2</div>
-            <h3>Learn the Principles</h3>
-            <p>Study key principles, see before-and-after examples, and learn the do's and don'ts.</p>
+            <h3>Audio Examples</h3>
+            <p>Listen to every example spoken aloud. Choose your voice and speed. Perfect for auditory learners.</p>
         </div>
         <div class="step">
             <div class="step-num">3</div>
-            <h3>Practice & Quiz</h3>
-            <p>Try real exercises, take quizzes, and get tips to level up your communication game.</p>
+            <h3>Track Progress</h3>
+            <p>Earn XP, maintain streaks, unlock badges, and watch your progress ring fill up over 30 days.</p>
         </div>
+    </div>
+</section>
+
+<!-- Badges -->
+<section class="dashboard">
+    <h2 class="section-title">Achievement Badges</h2>
+    <p class="section-subtitle">Unlock badges by completing lessons, maintaining streaks, and mastering styles.</p>
+    <div class="badges-grid">
+        {% for badge in badges %}
+        <div class="badge-card locked" data-badge="{{ badge.id }}">
+            <div class="badge-icon">{{ badge.icon }}</div>
+            <div class="badge-name">{{ badge.name }}</div>
+            <div class="badge-desc">{{ badge.description }}</div>
+        </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}Day {{ lesson.day }}: {{ lesson.title }}{% endblock %}
+
+{% block content %}
+<div class="lesson-page page-enter">
+    <!-- Header -->
+    <div class="lesson-header">
+        <div class="lesson-day-badge">
+            📅 Day {{ lesson.day }} of 30 · Week {{ lesson.week }}
+        </div>
+        <h1 class="lesson-title">{{ lesson.title }}</h1>
+        <div class="lesson-meta">
+            <span>⏱ {{ lesson.duration }}</span>
+            <span>⭐ {{ lesson.xp }} XP</span>
+            {% if style %}<span>{{ style.icon }} {{ style.name }}</span>{% endif %}
+            <span class="day-type {{ lesson.type }}" style="text-transform:capitalize;">{{ lesson.type|replace('_', ' ') }}</span>
+        </div>
+    </div>
+
+    <!-- Voice Settings -->
+    <div class="voice-settings">
+        <label>🔊 Voice:
+            <select id="voice-select"></select>
+        </label>
+        <label>Speed:
+            <input type="range" id="voice-rate" min="0.5" max="1.5" step="0.1" value="0.9">
+            <span id="rate-label">0.9x</span>
+        </label>
+    </div>
+
+    <!-- Lesson Content -->
+    <section class="lesson-section">
+        <h2>📖 Lesson</h2>
+        <button class="btn-audio" data-text="{{ lesson.lesson|replace('"', "'") }}">
+            <span class="audio-icon">🔊</span><span class="audio-text">Listen to lesson</span>
+        </button>
+        <p class="lesson-text" style="margin-top:0.75rem;">{{ lesson.lesson }}</p>
+    </section>
+
+    <!-- Key Takeaway -->
+    <section class="lesson-section">
+        <h2>🎯 Key Takeaway</h2>
+        <div class="key-takeaway">
+            <button class="btn-audio" data-text="{{ lesson.key_takeaway|replace('"', "'") }}" style="margin-bottom:0.5rem;">
+                <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+            </button>
+            <p>{{ lesson.key_takeaway }}</p>
+        </div>
+    </section>
+
+    <!-- Style Examples (if applicable) -->
+    {% if style %}
+    <section class="lesson-section">
+        <h2>💬 Examples</h2>
+        <div class="examples-list">
+            {% for ex in style.examples[:3] %}
+            <div class="example-card">
+                <div class="example-bad">
+                    <span class="example-label">❌ Weak</span>
+                    <p>"{{ ex.bad }}"</p>
+                    <button class="btn-audio" data-text="{{ ex.bad }}" style="margin-top:0.5rem;font-size:0.75rem;">
+                        <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+                    </button>
+                </div>
+                <div class="example-arrow">→</div>
+                <div class="example-good">
+                    <span class="example-label">✅ Powerful</span>
+                    <p>"{{ ex.good }}"</p>
+                    <button class="btn-audio" data-text="{{ ex.good }}" style="margin-top:0.5rem;font-size:0.75rem;">
+                        <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Exercise -->
+    <section class="lesson-section">
+        <h2>🎯 Practice Exercise</h2>
+        <div class="exercise-card">
+            <button class="btn-audio" data-text="{{ lesson.exercise|replace('"', "'") }}" style="margin-bottom:0.5rem;">
+                <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+            </button>
+            <p>{{ lesson.exercise }}</p>
+        </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="lesson-section">
+        <h2>🧠 Quick Quiz</h2>
+        <div class="quiz-container">
+            <p class="quiz-question">{{ lesson.quiz.question }}</p>
+            <div class="quiz-options">
+                {% for option in lesson.quiz.options %}
+                <button class="quiz-option" data-index="{{ loop.index0 }}">
+                    <span class="option-letter">{{ 'ABCD'[loop.index0] }}</span>
+                    <span>{{ option }}</span>
+                </button>
+                {% endfor %}
+            </div>
+            <div class="quiz-explanation" id="quiz-explanation">
+                <strong>💡 Explanation:</strong> {{ lesson.quiz.explanation }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Reflection -->
+    <section class="lesson-section">
+        <h2>🤔 Reflection</h2>
+        <div class="reflection-card">
+            <p style="margin-bottom:0.75rem;">{{ lesson.reflection }}</p>
+            <textarea id="reflection-text" data-day="{{ lesson.day }}"
+                placeholder="Write your reflection here... (auto-saves)"
+                style="width:100%;min-height:100px;background:var(--surface-solid);border:1px solid var(--border);border-radius:8px;padding:0.75rem;color:var(--text);font-family:var(--font);font-size:0.9rem;resize:vertical;"></textarea>
+        </div>
+    </section>
+
+    <!-- Complete Button -->
+    <button class="btn-complete" id="btn-complete" data-day="{{ lesson.day }}" data-xp="{{ lesson.xp }}" disabled>
+        Answer the quiz to complete this lesson
+    </button>
+
+    <!-- Next Day -->
+    <div id="next-day-link" style="display:none;margin-top:1.5rem;text-align:center;">
+        {% if next_day %}
+        <a href="/day/{{ next_day }}" class="btn-primary">Continue to Day {{ next_day }} →</a>
+        {% endif %}
+    </div>
+
+    <!-- Navigation -->
+    <div class="lesson-nav">
+        {% if prev_day %}
+        <a href="/day/{{ prev_day }}" class="btn-secondary">← Day {{ prev_day }}</a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        <a href="/curriculum" class="btn-secondary">📋 All Days</a>
+        {% if next_day %}
+        <a href="/day/{{ next_day }}" class="btn-primary">Day {{ next_day }} →</a>
+        {% else %}
+        <span></span>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    window.TM_QUIZ_DATA = {{ lesson.quiz|tojson }};
+    window.TM_DAY_NUM = {{ lesson.day }};
+</script>
+{% endblock %}
