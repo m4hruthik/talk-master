@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}TalkMaster{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Learn to talk like <span class="gradient-text">anyone you want to be</span></h1>
+        <p class="hero-sub">
+            Pick a communication style — from leadership to flirty, romantic to charismatic.
+            Get tips, real examples, practice exercises, and pro tips for each one.
+        </p>
+        <div class="hero-stats">
+            <div class="stat"><strong>{{ styles|length }}</strong> styles</div>
+            <div class="stat"><strong>35+</strong> examples</div>
+            <div class="stat"><strong>28+</strong> exercises</div>
+        </div>
+    </div>
+</section>
+
+<section class="styles-grid" id="styles">
+    <h2 class="section-title">Choose Your Style</h2>
+    <div class="cards-grid">
+        {% for id, style in styles.items() %}
+        <a href="/learn/{{ id }}" class="style-card" style="--card-color: {{ style.color }}; --card-color-light: {{ style.color_light }};">
+            <div class="card-icon" style="background: {{ style.color_light }};">{{ style.icon }}</div>
+            <h3>{{ style.name }}</h3>
+            <p>{{ style.tagline }}</p>
+            <div class="card-features">
+                <span>{{ style.principles|length }} principles</span>
+                <span>{{ style.examples|length }} examples</span>
+                <span>{{ style.exercises|length }} exercises</span>
+            </div>
+            <span class="card-cta">Start learning →</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Pick a Style</h3>
+            <p>Choose from 7 communication modes — leadership, charm, flirting, romance, and more.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>Learn the Principles</h3>
+            <p>Study key principles, see before-and-after examples, and learn the do's and don'ts.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Practice & Quiz</h3>
+            <p>Try real exercises, take quizzes, and get tips to level up your communication game.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

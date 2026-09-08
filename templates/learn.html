@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block title %}{{ style.name }}{% endblock %}
+
+{% block content %}
+<div class="learn-header" style="--accent: {{ style.color }}; --accent-light: {{ style.color_light }};">
+    <a href="/" class="back-link">← All Styles</a>
+    <div class="learn-title-row">
+        <div class="learn-icon">{{ style.icon }}</div>
+        <div>
+            <h1>{{ style.name }}</h1>
+            <p class="learn-tagline">{{ style.tagline }}</p>
+        </div>
+    </div>
+    <p class="learn-description">{{ style.description }}</p>
+</div>
+
+<div class="learn-body">
+    <section class="learn-section">
+        <h2>📋 Key Principles</h2>
+        <div class="principles-list">
+            {% for principle in style.principles %}
+            <div class="principle-item">
+                <span class="principle-num">{{ loop.index }}</span>
+                <p>{{ principle }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="learn-section">
+        <h2>💬 Before & After Examples</h2>
+        <p class="section-hint">See the difference between weak and powerful communication.</p>
+        <div class="examples-list">
+            {% for ex in style.examples %}
+            <div class="example-card">
+                <div class="example-bad">
+                    <span class="example-label">❌ Weak</span>
+                    <p>"{{ ex.bad }}"</p>
+                </div>
+                <div class="example-arrow">→</div>
+                <div class="example-good">
+                    <span class="example-label">✅ Powerful</span>
+                    <p>"{{ ex.good }}"</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="learn-section two-col">
+        <div class="col col-do">
+            <h2>✅ Do This</h2>
+            <ul class="checklist">
+                {% for item in style.dos %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col col-dont">
+            <h2>❌ Avoid This</h2>
+            <ul class="checklist dont">
+                {% for item in style.donts %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section class="learn-section">
+        <h2>🎯 Practice Exercises</h2>
+        <p class="section-hint">Actionable exercises you can try right now.</p>
+        <div class="exercises-list">
+            {% for exercise in style.exercises %}
+            <div class="exercise-item">
+                <span class="exercise-num">{{ loop.index }}</span>
+                <p>{{ exercise }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="btn-random-exercise" data-style="{{ style_id }}" style="background: {{ style.color }};">
+            🎲 Give Me a Random Exercise
+        </button>
+        <div class="random-exercise-result" id="random-exercise"></div>
+    </section>
+
+    <section class="learn-section tips-section" style="background: {{ style.color_light }};">
+        <h2>💡 Pro Tips</h2>
+        <div class="tips-list">
+            {% for tip in style.tips %}
+            <div class="tip-item">
+                <span class="tip-icon">💡</span>
+                <p>{{ tip }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="learn-section quiz-section">
+        <h2>🧠 Quick Quiz</h2>
+        <p class="section-hint">Test your understanding with a quick question.</p>
+        <button class="btn-quiz" data-style="{{ style_id }}" style="background: {{ style.color }};">
+            Generate Quiz Question
+        </button>
+        <div class="quiz-result" id="quiz-result"></div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelector('.btn-quiz')?.addEventListener('click', async function() {
+        const styleId = this.dataset.style;
+        const result = document.getElementById('quiz-result');
+        this.textContent = 'Loading...';
+        this.disabled = true;
+        try {
+            const res = await fetch(`/api/quiz/${styleId}`);
+            const data = await res.json();
+            result.innerHTML = `
+                <div class="quiz-card">
+                    <p class="quiz-question">${data.question}</p>
+                    <div class="quiz-example">"${data.example}"</div>
+                    <button class="btn-reveal-answer" style="background: var(--accent);">Show Answer</button>
+                    <div class="quiz-answer" style="display:none;">${data.answer}</div>
+                </div>
+            `;
+            result.querySelector('.btn-reveal-answer').addEventListener('click', function() {
+                result.querySelector('.quiz-answer').style.display = 'block';
+                this.style.display = 'none';
+            });
+        } catch(e) {
+            result.innerHTML = '<p class="error">Could not load quiz. Try again.</p>';
+        }
+        this.textContent = 'Generate Another Question';
+        this.disabled = false;
+    });
+
+    document.querySelector('.btn-random-exercise')?.addEventListener('click', async function() {
+        const styleId = this.dataset.style;
+        const result = document.getElementById('random-exercise');
+        this.textContent = 'Loading...';
+        this.disabled = true;
+        try {
+            const res = await fetch(`/api/practice/${styleId}`);
+            const data = await res.json();
+            result.innerHTML = `
+                <div class="exercise-card">
+                    <p class="exercise-text">🎯 ${data.exercise}</p>
+                    <p class="exercise-tip">💡 ${data.tip}</p>
+                </div>
+            `;
+        } catch(e) {
+            result.innerHTML = '<p class="error">Could not load exercise. Try again.</p>';
+        }
+        this.textContent = '🎲 Give Me Another One';
+        this.disabled = false;
+    });
+</script>
+{% endblock %}
