@@ -12,7 +12,7 @@
 
     <!-- Voice Settings -->
     <div class="voice-settings" style="justify-content:center;">
-        <label>ğŸ”Š Voice:
+        <label>&#128266; Voice:
             <select id="voice-select"></select>
         </label>
         <label>Speed:
@@ -23,14 +23,14 @@
 
     <!-- Principles -->
     <section class="learn-section">
-        <h2>ğŸ“‹ Key Principles</h2>
+        <h2>&#128203; Key Principles</h2>
         <div class="principles-list">
             {% for principle in style.principles %}
             <div class="principle-item" style="--accent: {{ style.color }};">
                 <span class="principle-num">{{ loop.index }}</span>
                 <p>{{ principle }}</p>
                 <button class="btn-audio" data-text="{{ principle|replace('"', "'") }}" style="margin-left:auto;flex-shrink:0;">
-                    <span class="audio-icon">ğŸ”Š</span>
+                    <span class="audio-icon">&#128266;</span>
                 </button>
             </div>
             {% endfor %}
@@ -39,24 +39,24 @@
 
     <!-- Examples with Audio -->
     <section class="learn-section">
-        <h2>ğŸ’¬ Before & After Examples</h2>
-        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Tap ğŸ”Š to hear each example spoken aloud.</p>
+        <h2>&#128172; Before & After Examples</h2>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Tap &#128266; to hear each example spoken aloud.</p>
         <div class="examples-list">
             {% for ex in style.examples %}
             <div class="example-card">
                 <div class="example-bad">
-                    <span class="example-label">âŒ Weak</span>
+                    <span class="example-label">&#10060; Weak</span>
                     <p>"{{ ex.bad }}"</p>
                     <button class="btn-audio" data-text="{{ ex.bad }}" style="margin-top:0.5rem;">
-                        <span class="audio-icon">ğŸ”Š</span><span class="audio-text">Listen</span>
+                        <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
                     </button>
                 </div>
-                <div class="example-arrow">â†’</div>
+                <div class="example-arrow">&#8594;</div>
                 <div class="example-good">
-                    <span class="example-label">âœ… Powerful</span>
+                    <span class="example-label">&#9989; Powerful</span>
                     <p>"{{ ex.good }}"</p>
                     <button class="btn-audio" data-text="{{ ex.good }}" style="margin-top:0.5rem;">
-                        <span class="audio-icon">ğŸ”Š</span><span class="audio-text">Listen</span>
+                        <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
                     </button>
                 </div>
             </div>
@@ -66,10 +66,10 @@
 
     <!-- Do's and Don'ts -->
     <section class="learn-section">
-        <h2>âœ… Do's & âŒ Don'ts</h2>
+        <h2>&#9989; Do's & &#10060; Don'ts</h2>
         <div class="two-col">
             <div class="col col-do">
-                <h3 style="margin-bottom:0.75rem;">âœ… Do This</h3>
+                <h3 style="margin-bottom:0.75rem;">&#9989; Do This</h3>
                 <ul class="checklist">
                     {% for item in style.dos %}
                     <li>{{ item }}</li>
@@ -77,4 +77,59 @@
                 </ul>
             </div>
             <div class="col col-dont">
-          Æƒ27G–ÆSÒ&Ö&v–âÖ&÷GFöÓ£ãsW&VÓ²#î)ØÂfö–BF†—3Âöƒ3à¢ÇVÂ6Æ73Ò&6†V6¶Æ—7BFöçB#à¢²Rf÷"—FVÒ–â7G–ÆRæFöçG2WĞ¢ÆÆ“ç·²—FVÒ×ÓÂöÆ“à¢²RVæFf÷"WĞ¢Â÷VÃà¢ÂöF—cà¢ÂöF—cà¢Â÷6V7F–öãà ¢ÂÒÒW†W&6—6W2ÒÓà¢Ç6V7F–öâ6Æ73Ò&ÆV&â×6V7F–öâ#à¢Æƒ#ï	øêò&7F–6RW†W&6—6W3Âöƒ#à¢ÆF—b6Æ73Ò'&–æ6—ÆW2ÖÆ—7B#à¢²Rf÷"W†W&6—6R–â7G–ÆRæW†W&6—6W2WĞ¢ÆF—b6Æ73Ò&W†W&6—6RÖ—FVÒ"7G–ÆSÒ&F—7Æ“¦fÆWƒ¶Æ–vâÖ—FV×3¦fÆW‚×7F'C¶v£&VÓ¶&6¶w&÷VæC§f"‚Ò×7W&f6R“¶&÷&FW#£‚6öÆ–Bf"‚ÒÖ&÷&FW"“¶&÷&FW"×&F—W3§f"‚Ò×&F—W2×6Ò“·FF–æs£&VÒã#W&VÓ¶Ö&v–âÖ&÷GFöÓ£ãsW&VÓ²#à¢Ç7â6Æ73Ò&W†W&6—6RÖçVÒ"7G–ÆSÒ&&6¶w&÷VæC§·²7G–ÆRæ6öÆ÷"×Ó¶6öÆ÷#§v†—FS·v–GFƒ£#‡ƒ¶†V–v‡C£#‡ƒ¶&÷&FW"×&F—W3£‡ƒ¶F—7Æ“¦fÆWƒ¶Æ–vâÖ—FV×3¦6VçFW#¶§W7F–g’Ö6öçFVçC¦6VçFW#¶föçB×6—¦S£ã‡&VÓ¶föçB×vV–v‡C£s¶fÆW‚×6‡&–æ³£²#ç·²Æö÷æ–æFW‚×ÓÂ÷7ãà¢Ç7G–ÆSÒ&föçB×6—¦S£ã—&VÓ²#ç·²W†W&6—6R×ÓÂ÷à¢Æ'WGFöâ6Æ73Ò&'FâÖVF–ò"FF×FW‡CÒ'·²W†W&6—6WÇ&WÆ6R‚r"rÂ"r"’×Ò"7G–ÆSÒ&Ö&v–âÖÆVgC¦WFó¶fÆW‚×6‡&–æ³£²#à¢Ç7â6Æ73Ò&VF–òÖ–6öâ#ï	ùH£Â÷7ãà¢Âö'WGFöãà¢ÂöF—cà¢²RVæFf÷"WĞ¢ÂöF—cà¢Æ'WGFöâ6Æ73Ò&'Fâ×&æFöÒÖW†W&6—6R"FF×7G–ÆSÒ'·²7G–ÆUö–B×Ò"7G–ÆSÒ&&6¶w&÷VæC§·²7G–ÆRæ6öÆ÷"×Ó¶6öÆ÷#§v†—FS¶&÷&FW#¦æöæS·FF–æs£ãsW&VÒãW&VÓ¶&÷&FW"×&F—W3§f"‚Ò×&F—W2×6Ò“¶föçB×6—¦S£ã“W&VÓ¶föçB×vV–v‡C£c¶7W'6÷#§ö–çFW#¶föçBÖfÖ–Ç“§f"‚ÒÖföçB“·G&ç6—F–öã¦ÆÂf"‚Ò×G&ç6—F–öâ“²#à¢	øë‚v—fRÖR&æFöÒW†W&6—6P¢Âö'WGFöãà¢ÆF—b–CÒ'&æFöÒÖW†W&6—6R"7G–ÆSÒ&Ö&v–â×F÷£&VÓ²#ãÂöF—cà¢Â÷6V7F–öãà ¢ÂÒÒ&òF—2ÒÓà¢Ç6V7F–öâ6Æ73Ò&ÆV&â×6V7F–öâ#à¢Æƒ#ï	ù*&òF—3Âöƒ#à¢ÆF—b6Æ73Ò'F—2ÖÆ—7B#à¢²Rf÷"F—–â7G–ÆRçF—2WĞ¢ÆF—b6Æ73Ò'F—Ö—FVÒ#à¢Ç7â6Æ73Ò'F—Ö–6öâ#ï	ù*Â÷7ãà¢Çç·²F—×ÓÂ÷à¢Æ'WGFöâ6Æ73Ò&'FâÖVF–ò"FF×FW‡CÒ'·²F—Ç&WÆ6R‚r"rÂ"r"’×Ò"7G–ÆSÒ&Ö&v–âÖÆVgC¦WFó¶fÆW‚×6‡&–æ³£²#à¢Ç7â6Æ73Ò&VF–òÖ–6öâ#ï	ùH£Â÷7ãà¢Âö'WGFöãà¢ÂöF—cà¢²RVæFf÷"WĞ¢ÂöF—cà¢Â÷6V7F–öãà ¢ÂÒÒV—¢ÒÓà¢Ç6V7F–öâ6Æ73Ò&ÆV&â×6V7F–öâ#à¢Æƒ#ï	øêV–6²V—£Âöƒ#à¢Æ'WGFöâ6Æ73Ò&'Fâ×V—¢"FF×7G–ÆSÒ'·²7G–ÆUö–B×Ò"7G–ÆSÒ&&6¶w&÷VæC§·²7G–ÆRæ6öÆ÷"×Ó¶6öÆ÷#§v†—FS¶&÷&FW#¦æöæS·FF–æs£ãsW&VÒãW&VÓ¶&÷&FW"×&F—W3§f"‚Ò×&F—W2×6Ò“¶föçB×6—¦S£ã“W&VÓ¶föçB×vV–v‡C£c¶7W'6÷#§ö–çFW#¶föçBÖfÖ–Ç“§f"‚ÒÖföçB“²#à¢vVæW&FRV—¢VW7F–öà¢Âö'WGFöãà¢ÆF—b–CÒ'V—¢×&W7VÇB"7G–ÆSÒ&Ö&v–â×F÷£&VÓ²#ãÂöF—cà¢Â÷6V7F–öãà£ÂöF—câÉH[™›ØÚÈ	_B
+                <h3 style="margin-bottom:0.75rem;">&#10060; Avoid This</h3>
+                <ul class="checklist dont">
+                    {% for item in style.donts %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exercises -->
+    <section class="learn-section">
+        <h2>&#127919; Practice Exercises</h2>
+        <div class="principles-list">
+            {% for exercise in style.exercises %}
+            <div class="exercise-item" style="display:flex;align-items:flex-start;gap:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:0.75rem;">
+                <span class="exercise-num" style="background:{{ style.color }};color:white;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;">{{ loop.index }}</span>
+                <p style="font-size:0.9rem;">{{ exercise }}</p>
+                <button class="btn-audio" data-text="{{ exercise|replace('"', "'") }}" style="margin-left:auto;flex-shrink:0;">
+                    <span class="audio-icon">&#128266;</span>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="btn-random-exercise" data-style="{{ style_id }}" style="background:{{ style.color }};color:white;border:none;padding:0.75rem 1.5rem;border-radius:var(--radius-sm);font-size:0.95rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:all var(--transition);">
+            &#127922; Give Me a Random Exercise
+        </button>
+        <div id="random-exercise" style="margin-top:1rem;"></div>
+    </section>
+
+    <!-- Pro Tips -->
+    <section class="learn-section">
+        <h2>&#128161; Pro Tips</h2>
+        <div class="tips-list">
+            {% for tip in style.tips %}
+            <div class="tip-item">
+                <span class="tip-icon">&#128161;</span>
+                <p>{{ tip }}</p>
+                <button class="btn-audio" data-text="{{ tip|replace('"', "'") }}" style="margin-left:auto;flex-shrink:0;">
+                    <span class="audio-icon">&#128266;</span>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="learn-section">
+        <h2>&#129504; Quick Quiz</h2>
+        <button class="btn-quiz" data-style="{{ style_id }}" style="background:{{ style.color }};color:white;border:none;padding:0.75rem 1.5rem;border-radius:var(--radius-sm);font-size:0.95rem;font-weight:600;cursor:pointer;font-family:var(--font);">
+            Generate Quiz Question
+        </button>
+        <div id="quiz-result" style="margin-top:1rem;"></div>
+    </section>
+</div>
+{% endblock %}

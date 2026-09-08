@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}TalkMaster Premium{% endblock %} — Learn to Talk Like Anyone</title>
+    <title>{% block title %}TalkMaster Premium{% endblock %} &#8212; Learn to Talk Like Anyone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -11,27 +11,31 @@
 <body>
     <nav class="navbar">
         <a href="/" class="nav-brand">
-            <span class="nav-logo">🗣️</span>
+            <span class="nav-logo">&#128483;&#65039;</span>
             <span>TalkMaster</span>
         </a>
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/curriculum">30-Day Path</a>
             <div class="streak-badge" id="nav-streak" style="display:none;">
-                <span class="flame">🔥</span>
+                <span class="flame">&#128293;</span>
                 <span class="streak-count">0</span>
             </div>
-            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="theme-toggle" aria-label="Toggle theme">&#9728;&#65039;</button>
         </div>
     </nav>
+
     <main>
         {% block content %}{% endblock %}
     </main>
+
     <footer>
-        <p>TalkMaster Premium — Learn to talk like anyone you want to be.</p>
-        <p class="footer-sub">30-Day Curriculum · 7 Styles · Audio Features · Progress Tracking</p>
+        <p>TalkMaster Premium &#8212; Learn to talk like anyone you want to be.</p>
+        <p class="footer-sub">30-Day Curriculum &#183; 7 Styles &#183; Audio Features &#183; Progress Tracking</p>
     </footer>
+
     <script>
+        // Badge data for progress checking
         window.TM_BADGES = {{ badges|tojson if badges else '[]' }};
     </script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>

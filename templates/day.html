@@ -6,12 +6,12 @@
     <!-- Header -->
     <div class="lesson-header">
         <div class="lesson-day-badge">
-            📅 Day {{ lesson.day }} of 30 · Week {{ lesson.week }}
+            &#128197; Day {{ lesson.day }} of 30 &#183; Week {{ lesson.week }}
         </div>
         <h1 class="lesson-title">{{ lesson.title }}</h1>
         <div class="lesson-meta">
-            <span>⏱ {{ lesson.duration }}</span>
-            <span>⭐ {{ lesson.xp }} XP</span>
+            <span>&#9201; {{ lesson.duration }}</span>
+            <span>&#11088; {{ lesson.xp }} XP</span>
             {% if style %}<span>{{ style.icon }} {{ style.name }}</span>{% endif %}
             <span class="day-type {{ lesson.type }}" style="text-transform:capitalize;">{{ lesson.type|replace('_', ' ') }}</span>
         </div>
@@ -19,7 +19,7 @@
 
     <!-- Voice Settings -->
     <div class="voice-settings">
-        <label>🔊 Voice:
+        <label>&#128266; Voice:
             <select id="voice-select"></select>
         </label>
         <label>Speed:
@@ -30,19 +30,19 @@
 
     <!-- Lesson Content -->
     <section class="lesson-section">
-        <h2>📖 Lesson</h2>
+        <h2>&#128214; Lesson</h2>
         <button class="btn-audio" data-text="{{ lesson.lesson|replace('"', "'") }}">
-            <span class="audio-icon">🔊</span><span class="audio-text">Listen to lesson</span>
+            <span class="audio-icon">&#128266;</span><span class="audio-text">Listen to lesson</span>
         </button>
         <p class="lesson-text" style="margin-top:0.75rem;">{{ lesson.lesson }}</p>
     </section>
 
     <!-- Key Takeaway -->
     <section class="lesson-section">
-        <h2>🎯 Key Takeaway</h2>
+        <h2>&#127919; Key Takeaway</h2>
         <div class="key-takeaway">
             <button class="btn-audio" data-text="{{ lesson.key_takeaway|replace('"', "'") }}" style="margin-bottom:0.5rem;">
-                <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+                <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
             </button>
             <p>{{ lesson.key_takeaway }}</p>
         </div>
@@ -51,23 +51,23 @@
     <!-- Style Examples (if applicable) -->
     {% if style %}
     <section class="lesson-section">
-        <h2>💬 Examples</h2>
+        <h2>&#128172; Examples</h2>
         <div class="examples-list">
             {% for ex in style.examples[:3] %}
             <div class="example-card">
                 <div class="example-bad">
-                    <span class="example-label">❌ Weak</span>
+                    <span class="example-label">&#10060; Weak</span>
                     <p>"{{ ex.bad }}"</p>
                     <button class="btn-audio" data-text="{{ ex.bad }}" style="margin-top:0.5rem;font-size:0.75rem;">
-                        <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+                        <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
                     </button>
                 </div>
-                <div class="example-arrow">→</div>
+                <div class="example-arrow">&#8594;</div>
                 <div class="example-good">
-                    <span class="example-label">✅ Powerful</span>
+                    <span class="example-label">&#9989; Powerful</span>
                     <p>"{{ ex.good }}"</p>
                     <button class="btn-audio" data-text="{{ ex.good }}" style="margin-top:0.5rem;font-size:0.75rem;">
-                        <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+                        <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
                     </button>
                 </div>
             </div>
@@ -78,10 +78,10 @@
 
     <!-- Exercise -->
     <section class="lesson-section">
-        <h2>🎯 Practice Exercise</h2>
+        <h2>&#127919; Practice Exercise</h2>
         <div class="exercise-card">
             <button class="btn-audio" data-text="{{ lesson.exercise|replace('"', "'") }}" style="margin-bottom:0.5rem;">
-                <span class="audio-icon">🔊</span><span class="audio-text">Listen</span>
+                <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
             </button>
             <p>{{ lesson.exercise }}</p>
         </div>
@@ -89,7 +89,7 @@
 
     <!-- Quiz -->
     <section class="lesson-section">
-        <h2>🧠 Quick Quiz</h2>
+        <h2>&#129504; Quick Quiz</h2>
         <div class="quiz-container">
             <p class="quiz-question">{{ lesson.quiz.question }}</p>
             <div class="quiz-options">
@@ -101,14 +101,14 @@
                 {% endfor %}
             </div>
             <div class="quiz-explanation" id="quiz-explanation">
-                <strong>💡 Explanation:</strong> {{ lesson.quiz.explanation }}
+                <strong>&#128161; Explanation:</strong> {{ lesson.quiz.explanation }}
             </div>
         </div>
     </section>
 
     <!-- Reflection -->
     <section class="lesson-section">
-        <h2>🤔 Reflection</h2>
+        <h2>&#129300; Reflection</h2>
         <div class="reflection-card">
             <p style="margin-bottom:0.75rem;">{{ lesson.reflection }}</p>
             <textarea id="reflection-text" data-day="{{ lesson.day }}"
@@ -125,20 +125,20 @@
     <!-- Next Day -->
     <div id="next-day-link" style="display:none;margin-top:1.5rem;text-align:center;">
         {% if next_day %}
-        <a href="/day/{{ next_day }}" class="btn-primary">Continue to Day {{ next_day }} →</a>
+        <a href="/day/{{ next_day }}" class="btn-primary">Continue to Day {{ next_day }} &#8594;</a>
         {% endif %}
     </div>
 
     <!-- Navigation -->
     <div class="lesson-nav">
         {% if prev_day %}
-        <a href="/day/{{ prev_day }}" class="btn-secondary">← Day {{ prev_day }}</a>
+        <a href="/day/{{ prev_day }}" class="btn-secondary">&#8592; Day {{ prev_day }}</a>
         {% else %}
         <span></span>
         {% endif %}
-        <a href="/curriculum" class="btn-secondary">📋 All Days</a>
+        <a href="/curriculum" class="btn-secondary">&#128203; All Days</a>
         {% if next_day %}
-        <a href="/day/{{ next_day }}" class="btn-primary">Day {{ next_day }} →</a>
+        <a href="/day/{{ next_day }}" class="btn-primary">Day {{ next_day }} &#8594;</a>
         {% else %}
         <span></span>
         {% endif %}
