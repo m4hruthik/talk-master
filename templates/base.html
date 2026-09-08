@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}TalkMaster{% endblock %} — Learn to Talk Like Anyone</title>
+    <title>{% block title %}TalkMaster Premium{% endblock %} — Learn to Talk Like Anyone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -16,19 +16,24 @@
         </a>
         <div class="nav-links">
             <a href="/">Home</a>
-            <a href="https://github.com" target="_blank" class="nav-github">GitHub</a>
+            <a href="/curriculum">30-Day Path</a>
+            <div class="streak-badge" id="nav-streak" style="display:none;">
+                <span class="flame">🔥</span>
+                <span class="streak-count">0</span>
+            </div>
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
         </div>
     </nav>
-
     <main>
         {% block content %}{% endblock %}
     </main>
-
     <footer>
-        <p>TalkMaster — Learn to talk like anyone you want to be.</p>
-        <p class="footer-sub">Built with Flask · Open source</p>
+        <p>TalkMaster Premium — Learn to talk like anyone you want to be.</p>
+        <p class="footer-sub">30-Day Curriculum · 7 Styles · Audio Features · Progress Tracking</p>
     </footer>
-
+    <script>
+        window.TM_BADGES = {{ badges|tojson if badges else '[]' }};
+    </script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     {% block scripts %}{% endblock %}
 </body>

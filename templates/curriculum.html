@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}30-Day Curriculum{% endblock %}
+{% block content %}
+<section class="curriculum-section page-enter">
+    <div style="text-align:center;margin-bottom:2rem;">
+        <h1 class="section-title">30-Day Communication Mastery</h1>
+        <p class="section-subtitle">A structured learning path. Each day takes 5-10 minutes. Complete lessons, earn XP, and become a master communicator.</p>
+    </div>
+    {% set weeks = [1, 2, 3, 4] %}
+    {% set week_titles = {1: "Week 1: Foundations", 2: "Week 2: Emotional Connection", 3: "Week 3: Advanced Expression", 4: "Week 4: Mastery & Integration"} %}
+    {% for week in weeks %}
+    <div class="week-section">
+        <div class="week-header">
+            <span class="week-badge">Week {{ week }}</span>
+            <span>{{ week_titles[week] }}</span>
+        </div>
+        <div class="days-grid">
+            {% for lesson in curriculum if lesson.week == week %}
+            <a href="/day/{{ lesson.day }}" class="day-card" data-day="{{ lesson.day }}">
+                <span class="day-num">Day {{ lesson.day }}</span>
+                <span class="day-title">{{ lesson.title }}</span>
+                <span class="day-type {{ lesson.type }}">{{ lesson.type|replace('_', ' ') }}</span>
+                <span style="font-size:0.7rem;color:var(--text-dim);">⏱ {{ lesson.duration }} · {{ lesson.xp }} XP</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
