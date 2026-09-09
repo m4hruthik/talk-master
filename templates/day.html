@@ -12,7 +12,7 @@
         <div class="lesson-meta">
             <span>&#9201; {{ lesson.duration }}</span>
             <span>&#11088; {{ lesson.xp }} XP</span>
-            {% if style %}<span>{{ style.icon }} {{ style.name }}</span>{% endif %}
+            {% if style %}<span>{{ style.icon|safe }} {{ style.name }}</span>{% endif %}
             <span class="day-type {{ lesson.type }}" style="text-transform:capitalize;">{{ lesson.type|replace('_', ' ') }}</span>
         </div>
     </div>
@@ -28,6 +28,11 @@
         </label>
     </div>
 
+    <!-- Lesson Progress Bar -->
+    <div class="lesson-progress-bar">
+        <div class="lesson-progress-fill" id="lesson-progress-fill"></div>
+    </div>
+
     <!-- Lesson Content -->
     <section class="lesson-section">
         <h2>&#128214; Lesson</h2>
@@ -35,6 +40,13 @@
             <span class="audio-icon">&#128266;</span><span class="audio-text">Listen to lesson</span>
         </button>
         <p class="lesson-text" style="margin-top:0.75rem;">{{ lesson.lesson }}</p>
+    </section>
+
+    <!-- Interactive Challenges -->
+    <section class="lesson-section">
+        <h2>&#127919; Interactive Challenges</h2>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1rem;">Complete all challenges to finish this lesson. Wrong answers cost a heart!</p>
+        <div id="challenge-container"></div>
     </section>
 
     <!-- Key Takeaway -->
@@ -48,34 +60,6 @@
         </div>
     </section>
 
-    <!-- Style Examples (if applicable) -->
-    {% if style %}
-    <section class="lesson-section">
-        <h2>&#128172; Examples</h2>
-        <div class="examples-list">
-            {% for ex in style.examples[:3] %}
-            <div class="example-card">
-                <div class="example-bad">
-                    <span class="example-label">&#10060; Weak</span>
-                    <p>"{{ ex.bad }}"</p>
-                    <button class="btn-audio" data-text="{{ ex.bad }}" style="margin-top:0.5rem;font-size:0.75rem;">
-                        <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
-                    </button>
-                </div>
-                <div class="example-arrow">&#8594;</div>
-                <div class="example-good">
-                    <span class="example-label">&#9989; Powerful</span>
-                    <p>"{{ ex.good }}"</p>
-                    <button class="btn-audio" data-text="{{ ex.good }}" style="margin-top:0.5rem;font-size:0.75rem;">
-                        <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
-                    </button>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-    {% endif %}
-
     <!-- Exercise -->
     <section class="lesson-section">
         <h2>&#127919; Practice Exercise</h2>
@@ -84,25 +68,6 @@
                 <span class="audio-icon">&#128266;</span><span class="audio-text">Listen</span>
             </button>
             <p>{{ lesson.exercise }}</p>
-        </div>
-    </section>
-
-    <!-- Quiz -->
-    <section class="lesson-section">
-        <h2>&#129504; Quick Quiz</h2>
-        <div class="quiz-container">
-            <p class="quiz-question">{{ lesson.quiz.question }}</p>
-            <div class="quiz-options">
-                {% for option in lesson.quiz.options %}
-                <button class="quiz-option" data-index="{{ loop.index0 }}">
-                    <span class="option-letter">{{ 'ABCD'[loop.index0] }}</span>
-                    <span>{{ option }}</span>
-                </button>
-                {% endfor %}
-            </div>
-            <div class="quiz-explanation" id="quiz-explanation">
-                <strong>&#128161; Explanation:</strong> {{ lesson.quiz.explanation }}
-            </div>
         </div>
     </section>
 
@@ -119,7 +84,7 @@
 
     <!-- Complete Button -->
     <button class="btn-complete" id="btn-complete" data-day="{{ lesson.day }}" data-xp="{{ lesson.xp }}" disabled>
-        Answer the quiz to complete this lesson
+        Complete all challenges to finish this lesson
     </button>
 
     <!-- Next Day -->
@@ -145,8 +110,5 @@
     </div>
 </div>
 
-<script>
-    window.TM_QUIZ_DATA = {{ lesson.quiz|tojson }};
-    window.TM_DAY_NUM = {{ lesson.day }};
-</script>
+<script id="challenges-data" type="application/json">{{ challenges_json|safe }}</script>
 {% endblock %}

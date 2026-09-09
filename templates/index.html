@@ -7,13 +7,13 @@
     <div class="hero-content">
         <h1>Learn to talk like <span class="gradient-text">anyone you want to be</span></h1>
         <p class="hero-sub">
-            A 30-day journey through 7 communication styles &#8212; from leadership to charm, from romance to diplomacy.
-            With audio examples, daily lessons, quizzes, and progress tracking.
+            A 30-day interactive journey through 7 communication styles &#8212; from leadership to charm, from romance to diplomacy.
+            Complete challenges, earn XP, maintain streaks, and become a master communicator.
         </p>
         <div class="hero-stats">
             <div class="stat"><strong>7</strong> styles</div>
             <div class="stat"><strong>30</strong> days</div>
-            <div class="stat"><strong>35+</strong> examples</div>
+            <div class="stat"><strong>150+</strong> challenges</div>
             <div class="stat"><strong>13</strong> badges</div>
         </div>
     </div>
@@ -70,7 +70,7 @@
     <div class="cards-grid">
         {% for id, style in styles.items() %}
         <a href="/learn/{{ id }}" class="style-card" style="--card-color: {{ style.color }}; --card-color-light: {{ style.color_light }}; --card-glow: {{ style.color }}33;">
-            <div class="card-icon" style="background: {{ style.color_light }};">{{ style.icon }}</div>
+            <div class="card-icon" style="background: {{ style.color_light }};">{{ style.icon|safe }}</div>
             <h3>{{ style.name }}</h3>
             <p>{{ style.tagline }}</p>
             <div class="card-features">
@@ -87,7 +87,7 @@
 <!-- 30-Day Path CTA -->
 <section class="how-it-works">
     <h2 class="section-title" style="text-align:center;">Start Your 30-Day Journey</h2>
-    <p class="section-subtitle" style="text-align:center;">Structured daily lessons with quizzes, exercises, and audio examples.</p>
+    <p class="section-subtitle" style="text-align:center;">Interactive daily lessons with challenges, quizzes, exercises, and audio examples.</p>
     <div style="text-align:center;margin-bottom:2rem;">
         <a href="/curriculum" class="btn-primary" style="font-size:1.05rem;padding:1rem 2rem;">
             View 30-Day Curriculum &#8594;
@@ -96,8 +96,8 @@
     <div class="steps">
         <div class="step">
             <div class="step-num">1</div>
-            <h3>Daily Lessons</h3>
-            <p>Each day brings a new lesson &#8212; principles, examples, and exercises you can practice immediately.</p>
+            <h3>Interactive Challenges</h3>
+            <p>Each day brings 5 interactive challenges: multiple choice, fill-in-blank, scenarios, true/false, and matching.</p>
         </div>
         <div class="step">
             <div class="step-num">2</div>
@@ -106,8 +106,13 @@
         </div>
         <div class="step">
             <div class="step-num">3</div>
-            <h3>Track Progress</h3>
-            <p>Earn XP, maintain streaks, unlock badges, and watch your progress ring fill up over 30 days.</p>
+            <h3>Earn XP & Badges</h3>
+            <p>Earn XP, maintain streaks, unlock 13 achievement badges, and watch your progress ring fill up.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <h3>Hearts System</h3>
+            <p>You start with 5 hearts each day. Wrong answers cost a heart. Learn carefully and keep your streak alive!</p>
         </div>
     </div>
 </section>
@@ -119,7 +124,7 @@
     <div class="badges-grid">
         {% for badge in badges %}
         <div class="badge-card locked" data-badge="{{ badge.id }}">
-            <div class="badge-icon">{{ badge.icon }}</div>
+            <div class="badge-icon">{{ badge.icon|safe }}</div>
             <div class="badge-name">{{ badge.name }}</div>
             <div class="badge-desc">{{ badge.description }}</div>
         </div>

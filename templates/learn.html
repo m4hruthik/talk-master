@@ -2,9 +2,9 @@
 {% block title %}{{ style.name }}{% endblock %}
 
 {% block content %}
-<div class="learn-page page-enter">
+<div class="learn-page page-enter" data-style-id="{{ style_id }}">
     <div class="learn-header">
-        <div class="learn-icon-large" style="background: {{ style.color_light }};">{{ style.icon }}</div>
+        <div class="learn-icon-large" style="background: {{ style.color_light }};">{{ style.icon|safe }}</div>
         <h1 class="lesson-title">{{ style.name }}</h1>
         <p style="color: {{ style.color }};font-size:1.1rem;font-weight:500;">{{ style.tagline }}</p>
         <p style="color:var(--text-muted);max-width:600px;margin:0.75rem auto 0;">{{ style.description }}</p>

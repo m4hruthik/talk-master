@@ -17,6 +17,13 @@
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/curriculum">30-Day Path</a>
+            <div class="hearts-display" id="nav-hearts">
+                <span class="heart-icon">&#10084;</span>
+                <span class="heart-icon">&#10084;</span>
+                <span class="heart-icon">&#10084;</span>
+                <span class="heart-icon">&#10084;</span>
+                <span class="heart-icon">&#10084;</span>
+            </div>
             <div class="streak-badge" id="nav-streak" style="display:none;">
                 <span class="flame">&#128293;</span>
                 <span class="streak-count">0</span>
@@ -31,11 +38,10 @@
 
     <footer>
         <p>TalkMaster Premium &#8212; Learn to talk like anyone you want to be.</p>
-        <p class="footer-sub">30-Day Curriculum &#183; 7 Styles &#183; Audio Features &#183; Progress Tracking</p>
+        <p class="footer-sub">30-Day Curriculum &#183; 7 Styles &#183; Interactive Lessons &#183; Audio &#183; Gamification</p>
     </footer>
 
     <script>
-        // Badge data for progress checking
         window.TM_BADGES = {{ badges|tojson if badges else '[]' }};
     </script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
